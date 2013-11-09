@@ -4,10 +4,13 @@
         <style>
             td.diff-addedline{background:#ccffcc;font-size:smaller;border:solid 2px black}td.diff-deletedline{background:#ffffaa;font-size:smaller;border:dotted 2px black}
             .diffchange{color:silver;font-weight:bold;text-decoration:underline}
+            #editsummary{font-size:30px;color:green}
         </style>
     </head>
     <body>
         <div id="diff1"><table>{{ diff|safe }}</table></div>
+        <br />
+        <div id="editsummary">{{ editsummary }}</div>
         <br />
         <form action="" method="post">
             <input type="hidden" name="diffid" value="{{ diffid }}" />

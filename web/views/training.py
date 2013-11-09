@@ -29,4 +29,6 @@ def train():
         return "omg pls exist<br/><a href=\"/train/\">pls refresh</a>"
     pages = c["query"]["pages"]
     diff = pages.values()[0]["revisions"][0]["diff"]["*"]
-    return render_template("train.html", diff=diff, diffid=revid)
+    comment = pages.values()[0]["revisions"][0]["comment"]
+    print comment
+    return render_template("train.html", diff=diff, diffid=revid, editsummary=comment)
