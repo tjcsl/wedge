@@ -1,6 +1,5 @@
 import hashlib
-import langlearn
-import langlearn.database
+import web
 from db import conn
 from flask import session
 
