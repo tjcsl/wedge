@@ -16,5 +16,6 @@ def add_views(views):
 
 
 add_views({
-    '/': core.index
+    '/': core.index,
+    '/train/': training.train 
 })

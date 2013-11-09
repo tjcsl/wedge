@@ -21,14 +21,14 @@ DROP TABLE IF EXISTS classifier_cache;
 CREATE TABLE classifier_cache (
     wid serial unique,
     word varchar(128),
-    p_add_spam number,
-    p_add_good number,
-    p_del_spam number,
-    p_del_good number
+    p_add_spam float,
+    p_add_good float,
+    p_del_spam float,
+    p_del_good float
 );
 
 DROP TABLE IF EXISTS training_diffs;
-CREATE TABLE training_diffs {
+CREATE TABLE training_diffs (
     did serial unique,
     added text,
     deled text,

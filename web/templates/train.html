@@ -1,0 +1,20 @@
+<html>
+    <head>
+        <title>Training data entry</title>
+    </head>
+    <body>
+        <div id="diff1"><table>{{ diff|safe }}</table></div>
+        <br />
+        <form action="" method="post">
+            <input type="hidden" name="diffid" value="{{ diffid }}" />
+            <input type="hidden" name="constructive" value="1" />
+            <input type="submit" value="Good" />
+        </form>
+        <form action="" method="post">
+            <input type="hidden" name="diffid" value="{{ diffid }}" />
+            <input type="hidden" name="constructive" value="0" />
+            <input type="submit" value="Bad" />
+        </form>
+    </body>
+</html>
+
