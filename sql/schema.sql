@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS users;
-CREATE TABLE users (
+CREATE TABLE users IF NOT EXISTS (
     uid serial,
     username varchar(512),
     wp_username varchar(512),

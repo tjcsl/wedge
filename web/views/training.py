@@ -22,9 +22,11 @@ def train():
         cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedlines, deledlines, constructive))
         conn.commit()
 
-    revid = randint(58000000, 58500000)
+    revid = randint(57000000, 58500000)
     c = urlopen("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvdiffto=prev&revids=%s" % revid).read()
     c = json.loads(c)
+    if "pages" not in c["query"]:
+        return "omg pls exist<br/><a href=\"/train/\">pls refresh</a>"
     pages = c["query"]["pages"]
     diff = pages.values()[0]["revisions"][0]["diff"]["*"]
     return render_template("train.html", diff=diff, diffid=revid)
