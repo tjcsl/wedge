@@ -15,8 +15,8 @@ def train():
         rev = json.loads(rev)
         pages = rev["query"]["pages"]
         diff = pages.values()[0]["revisions"][0]["diff"]["*"]
-        addedlines = " ".join(re.findall(r'diff-addedline"><div>.*diffchange-inline">(.*?)</span></div>', diff))
-        deledlines = " ".join(re.findall(r'diff-deletedline"><div>.*diffchange-inline">(.*?)</span></div>', diff))
+        addedlines = " ".join(re.findall(r'diff-addedline"><div>[.\n\r]*diffchange-inline">([.\n\r]*?)</span></div>', diff))
+        deledlines = " ".join(re.findall(r'diff-deletedline"><div>[.\n\r]*diffchange-inline">([.\n\r]*?)</span></div>', diff))
         print addedlines
         print deledlines
         cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedlines, deledlines, constructive))
