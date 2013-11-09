@@ -27,8 +27,7 @@ CREATE TABLE classifier_cache (
     p_del_good float
 );
 
-DROP TABLE IF EXISTS training_diffs;
-CREATE TABLE training_diffs (
+CREATE TABLE training_diffs IF NOT EXISTS (
     did serial unique,
     added text,
     deled text,
