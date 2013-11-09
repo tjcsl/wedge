@@ -3,7 +3,7 @@ from web.views import *
 
 
 def add_view(url, function):
-    langlearn.app.add_url_rule(
+    web.app.add_url_rule(
         url,
         view_func=function,
         methods=["GET", "POST"]
