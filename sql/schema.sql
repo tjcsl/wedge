@@ -10,7 +10,7 @@ CREATE TABLE users (
 DROP TABLE IF EXISTS training_words;
 CREATE TABLE training_words (
     wid serial unique,
-    word varchar(128),
+    word varchar(128) unique,
     add_spam integer,
     add_good integer,
     del_spam integer,
