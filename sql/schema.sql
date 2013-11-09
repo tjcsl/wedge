@@ -15,4 +15,10 @@ CREATE TABLE training_words (
     good integer
 );
 
-
+DROP TABLE IF EXISTS classifier_cache;
+CREATE TABLE classifier_cache (
+    wid serial unique,
+    word varchar(128),
+    p_spam number,
+    p_good number,
+);
