@@ -3,14 +3,6 @@
 <title>Log In</title>
 {% endblock %}
 {% block content %}
-<div id="alerts">
-	{% for category, message in get_flashed_messages(with_categories = True) %}
-	<div class="uk-alert uk-alert-{{ category }}">
-		<a href="" class="uk-alert-close uk-close"></a>
-		<p>{{ message | safe }}</p>
-	</div>
-	{% endfor %}
-</div>
 <div class="uk-grid">
 	<div class="uk-width-1-2 uk-container-center">
 		<div class="uk-panel">
