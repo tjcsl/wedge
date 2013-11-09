@@ -1,13 +1,21 @@
 {% extends "base.html" %}
+{% set navbar = [
+	('/', 'home', 'Home'),
+	('/userinfo', 'userinfo', 'User Info'),
+	('/userstats', 'userstats', 'My Statistics')
+] -%}
+{% set thispage = thispage | default('home') %}
 {% block navbar %}
 <nav class="uk-navbar uk-navbar-attached">
-	<a href="#sidebar" data-uk-offcanvas="" class="uk-navbar-toggle"></a>
+	<a href="/" class="uk-navbar-brand">wedge</a>
+	<a href="#sidebar" data-uk-offcanvas class="uk-navbar-toggle"></a>
 </nav>
 <div id="sidebar" class="uk-offcanvas">
 	<div class="uk-offcanvas-bar">
-		<ul class="uk-nav uk-nav-offcanvas" data-uk-nav="">
-			<li class="uk-active">Home</li>
-			<li>Potato</li>
+		<ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
+			{% for href, id, caption in navbar %}
+			<li{% if id == thispage %} class="uk-active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+			{% endfor %}
 		</ul>
 	</div>
 </div>

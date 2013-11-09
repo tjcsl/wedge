@@ -20,5 +20,8 @@ add_views({
     '/train/': training.train,
     '/login/': auth.login,
     '/logout/': auth.logout,
-    '/register/': auth.register
+    '/register/': auth.register,
+    '/userinfo/': userinfo.uinfo,
+    '/userstats/': userstats.ustats
+
 })
