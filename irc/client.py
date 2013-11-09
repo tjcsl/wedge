@@ -1,6 +1,8 @@
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
-import re
+from rq import Queue
+from utils import process_diff
+from worker import conn
 
 
 class Bot(irc.IRCClient):
@@ -12,15 +14,18 @@ class Bot(irc.IRCClient):
     def privmsg(self, user, channel, msg):
         try:
             diffid = msg.split("?diff=")[1].split("&oldid")[0]
-            print diffid
+            self.queue.enqueue(process_diff, diffid)
         except:
             pass
 
 
 class Factory(protocol.ClientFactory):
     def buildProtocol(self, addr):
-        return Bot()
+        b = Bot()
+        b.queue = Queue(connection=conn)
+        return b
 
 
-reactor.connectTCP("irc.wikimedia.org", 6667, Factory())
-reactor.run()
+if __name__ == '__main__':
+    reactor.connectTCP("irc.wikimedia.org", 6667, Factory())
+    reactor.run()
