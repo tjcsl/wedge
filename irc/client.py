@@ -10,7 +10,11 @@ class Bot(irc.IRCClient):
         self.join("#en.wikipedia")
 
     def privmsg(self, user, channel, msg):
-        print msg
+        try:
+            diffid = msg.split("?diff=")[1].split("&oldid")[0]
+            print diffid
+        except:
+            pass
 
 
 class Factory(protocol.ClientFactory):
