@@ -1,5 +1,5 @@
 from flask import render_template
 
 
-def index():
+def uinfo():
     return render_template("userinfo.html", thispage='userinfo')
