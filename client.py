@@ -16,10 +16,8 @@ class Bot(irc.IRCClient):
         try:
             colors = re.compile("\x03(?:\d{1,2}(?:,\d{1,2})?)?", re.UNICODE)
             msg = colors.sub("", msg)
-            print msg
             diffid = msg.split("?diff=")[1].split("&oldid")[0]
-            usern = msg.split("* ")[1].split(" *")[0]
-            print diffid, usern
+            usern = msg.split("* ")[1].split(" *")[0].strip()
             self.queue.enqueue(process_diff, (diffid, usern))
         except Exception, e:
             print e
