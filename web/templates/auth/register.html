@@ -1,0 +1,32 @@
+{% extends "navbar.html" %}
+{% block head %}
+<title>Register</title>
+{% endblock %}
+{% block content %}
+<div id="alerts">
+	{% for category, message in get_flashed_messages(with_categories = True) %}
+	<div class="uk-alert uk-alert-{{ category }}">
+		<a href="" class="uk-alert-close uk-close"></a>
+		<p>{{ message | safe }}</p>
+	</div>
+	{% endfor %}
+</div>
+<div class="uk-grid">
+	<div class="uk-width-1-2 uk-container-center">
+		<div class="uk-panel">
+			<h2 class="uk-panel-title">Register</h2>
+			<form class="uk-form" action="{{ url_for('register') }}" method="POST">
+				<fieldset>
+					<label for="username">Username: </label>
+					<input type="text" id="username" name="username" placeholder="Username"><br />
+					<label for="email">Email address: </label>
+					<input type="text" id="email" name="email" placeholder="example@example.com"><br />
+					<label for="password">Password: </label>
+					<input type="password" id="password" name="password" placeholder="Password"><br />
+					<button class="uk-button" value="submit">Register</button>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}
