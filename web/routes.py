@@ -23,5 +23,4 @@ add_views({
     '/register/': auth.register,
     '/userinfo/': userinfo.uinfo,
     '/userstats/': userstats.ustats
-
 })
