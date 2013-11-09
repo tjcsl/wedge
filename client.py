@@ -3,6 +3,7 @@ from twisted.internet import reactor, protocol
 from rq import Queue
 from utils import process_diff
 from worker import conn
+import re
 
 
 class Bot(irc.IRCClient):
@@ -13,8 +14,11 @@ class Bot(irc.IRCClient):
 
     def privmsg(self, user, channel, msg):
         try:
+            colors = re.compile("\x03(?:\d{1,2}(?:,\d{1,2})?)?", re.UNICODE)
+            msg = colors.sub("", msg)
             diffid = msg.split("?diff=")[1].split("&oldid")[0]
-            self.queue.enqueue(process_diff, diffid)
+            user = msg.split("* "([1].split(" *")[0]
+            self.queue.enqueue(process_diff, diffid, user)
         except:
             pass
 
