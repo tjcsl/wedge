@@ -43,8 +43,30 @@ def get_diff_for_diffid(diffid):
     return addedstring, deledstring
 
 
-def get_is_spam_score(diff):
-    return 0
+def clean_word(word):
+    for i in string.punctuation:
+        word = word.replace(i, "")
+    return word.lower()
+
+def classify(added, deled):
+    """ Returns tuple of (good, bad) """
+    added_words = added.split()
+    added_words = [clean_word(w) for w in added_words]
+    deled_words = deled.split()
+    deled_words = [clean_word(w) for w in deled_words]
+
+    pspam = 0
+    pgood = 0
+    for w in added_words:
+        curr.execute("SELECT p_add_spam, p_add_good WHERE word = %(word)s", {"word":w})
+        row = curr.fetchone()
+        pspam += curr[0]
+        pgood += curr[1]
+    for w in added_words:
+        curr.execute("SELECT p_del_spam, p_del_good WHERE word = %(word)s", {"word":w})
+        row = curr.fetchone()
+        pspam += curr[0]
+    return (pgood, pspam)
 
 
 def is_spam(diff):
