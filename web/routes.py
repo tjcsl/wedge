@@ -30,5 +30,5 @@ add_views({
     '/achievement_list/': ach_all.ach_all,
     '/getusers.json': getusers.getusers,
     '/leaderboard/': leaderboard.leaderboard,
-    '/verifyemail': verifyemail.verifye
+    '/verifyemail': verifyemail.verifye,
 })

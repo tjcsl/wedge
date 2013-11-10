@@ -37,12 +37,13 @@
                 </a>
             </li>
             {% endfor %}
-            <form class="uk-search" uk-data-search="{source:'/getusers.json'}">
-                <input class="uk-search-field" type="search" placeholder="Search for users...">
+        </ul>
+        <div class="uk-panel">
+            <form class="uk-search" data-uk-search="{source:'/getusers.json'}">
+                <input class="uk-search-field" type="search" placeholder="Search for users..."></input>
                 <button class="uk-search-close" type="reset"></button>
             </form>
-            </li>
-        </ul>
+        </div>
     </div>
 </div>
 <div id="loginmodal" class="uk-modal">
