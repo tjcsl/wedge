@@ -66,6 +66,9 @@ def classify(added, deled):
         curr.execute("SELECT p_del_spam, p_del_good WHERE word = %(word)s", {"word":w})
         row = curr.fetchone()
         pspam += curr[0]
+
+    pgood /= len(added_words) + len(deled_words)
+    pspam /= len(added_words) + len(deled_words)
     return (pgood, pspam)
 
 
