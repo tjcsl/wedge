@@ -36,10 +36,10 @@ def create_account(username, password, email):
     Create an account given a username/password combination.
     """
     cur = conn.cursor()
-    cur.execute("SELECT username FROM users")
+    cur.execute("SELECT username, email FROM users")
     fall = cur.fetchall()
     usernames = [matching[0] for matching in fall]
-    emails = [matching[2] for matching in fall]
+    emails = [matching[1] for matching in fall]
     if username in usernames or len(username) < 4 or len(email) < 7 or email in emails:
         return False
     emsg = PMMail(api_key = os.environ.get('POSTMARK_API_KEY'),

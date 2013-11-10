@@ -1,6 +1,7 @@
 from db import conn
 import re
 import string
+from util import clean_word, is_blacklisted
 curr = conn.cursor()
 
 def get_word_status(word):
@@ -10,13 +11,6 @@ def get_word_status(word):
     if row is None: return [0, 0, 0, 0]
     return [row[0], row[1], row[2], row[3]]
 
-def clean_word(word):
-    for i in string.punctuation:
-        word = word.replace(i, "")
-    return word.lower()
-
-def is_blacklisted(word):
-    return not re.match("[\w]+", word) and word in ['is', 'in', 'the', 'for', 'was', 'and', 'of', 'to', 'a', 'he']
 
 def compile_training_data():
     curr.execute("SELECT added, deled, is_good FROM training_diffs")
