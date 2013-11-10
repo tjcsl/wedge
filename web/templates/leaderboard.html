@@ -17,7 +17,7 @@
 			{% for i in users %}
 				<tr>
 					<td>{{ i[0] }}</td>
-					<td>{{ i[1] }}</td>
+					<td>{{ round(i[1], 1) }}</td>
 				</tr>
 			{% endfor %}
 			</tbody>
