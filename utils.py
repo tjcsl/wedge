@@ -1,5 +1,6 @@
 from score import score_funcs
 from db import conn
+from urllib2 import urlopen
 curr = conn.cursor()
 
 
