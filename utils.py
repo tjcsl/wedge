@@ -22,6 +22,7 @@ def process_diff(diffiduser):
     for f in score_funcs:
         zum += f(diff[0], diff[1])
     cur.execute("INSERT INTO edits (username, added, deled, score) VALUES (%s, %s, %s, %s)", (user, diff[0], diff[1], zum))
+    conn.commit()
 
 
 def get_diff_for_diffid(diffid):
