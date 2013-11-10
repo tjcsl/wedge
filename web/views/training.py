@@ -17,7 +17,7 @@ def train(revid2=None):
         conn.commit()
 
     if not revid2:
-        revid2 = randint(57000000, 58500000)
+        revid2 = randint(45000000, 58500000)
     c = urlopen("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvdiffto=prev&revids=%s" % revid2).read()
     c = json.loads(c)
     if "pages" not in c["query"]:
