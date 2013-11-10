@@ -22,7 +22,10 @@ def get_total_score(user=None):
 
 def get_avg_score(user=None):
     edits = get_edits(user)
-    return sum([i[0] for i in edits])/len(edits)
+    try:
+        return sum([i[0] for i in edits])/len(edits)
+    except:
+        return 0
 
 
 @web.app.context_processor
