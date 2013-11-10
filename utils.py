@@ -3,6 +3,7 @@ from db import conn
 from urllib2 import urlopen
 import json
 import lxml.html
+import string
 curr = conn.cursor()
 
 
