@@ -22,11 +22,14 @@ def is_valid_login(username, password):
     """
     cur = conn.cursor()
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("SELECT uid FROM users where username=%s and passwd_hash=%s",
+    cur.execute("SELECT uid, enabled FROM users where username=%s and passwd_hash=%s",
                 (username, passwd_hash))
     matching = cur.fetchone()
     cur.close()
     if matching is not None:
+        if not matching[1]:
+            flash("Your account is locked. Please contact an administrator.", "danger")
+            return False
         return (username, matching[0])
     return False
 
