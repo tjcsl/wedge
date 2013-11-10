@@ -9,8 +9,8 @@ def get_edits(user=None):
         cur.execute("SELECT score FROM edits")
         edits = cur.fetchall()
     else:
-        cur.execute("SELECT score FROM edits WHERE username=(SELECT wp_username from users where uid=%s)", [str(uid)])
-        edits = len(cur.fetchall())
+        cur.execute("SELECT score FROM edits WHERE username=(SELECT wp_username from users where uid=%s)", [str(user)])
+        edits = cur.fetchall()
     cur.close()
     return edits
 
@@ -29,4 +29,5 @@ def get_avg_score(user=None):
 def hue():
     return {'get_edits': get_edits,
             'get_total_score': get_total_score,
-            'get_avg_score': get_avg_score}
+            'get_avg_score': get_avg_score,
+            'len': len}
