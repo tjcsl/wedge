@@ -58,6 +58,8 @@ def is_blacklisted(word):
 
 def classify(added, deled):
     """ Returns tuple of (good, bad) """
+    added = added.lower()
+    deled = deled.lower()
     added_words = re.findall(r'[\w]+', added)
     deled_words = re.findall(r'[\w]+', deled)
 

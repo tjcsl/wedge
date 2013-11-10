@@ -18,8 +18,8 @@ def compile_training_data():
     words = {}
     print "Begin sum words"
     for row in curr.fetchall():
-        added = row[0]
-        deled = row[1]
+        added = row[0].lower()
+        deled = row[1].lower()
         added_words = re.findall(r'[\w]+', added)
         deled_words = re.findall(r'[\w]+', deled)
         for word in added_words:
