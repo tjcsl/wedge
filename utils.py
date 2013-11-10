@@ -75,6 +75,8 @@ def classify(added, deled):
             continue
         curr.execute("SELECT p_add_spam, p_add_good FROM classifier_cache WHERE word = %(word)s", {"word":w})
         row = curr.fetchone()
+        if not row:
+            continue
         pspam += row[0]
         pgood += row[1]
     for w in added_words:
@@ -82,6 +84,8 @@ def classify(added, deled):
             continue
         curr.execute("SELECT p_del_spam, p_del_good FROM classifier_cache WHERE word = %(word)s", {"word":w})
         row = curr.fetchone()
+        if not row:
+            continue
         pspam += row[0]
         pgood += row[1]
 
