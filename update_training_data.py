@@ -1,4 +1,6 @@
 from db import conn
+import re
+import string
 curr = conn.cursor()
 
 def get_word_status(word):
@@ -8,15 +10,26 @@ def get_word_status(word):
     if row is None: return [0, 0, 0, 0]
     return [row[0], row[1], row[2], row[3]]
 
+def clean_word(word):
+    for i in string.punctuation:
+        word = word.replace(i, "")
+    return word.lower()
+
+def is_blacklisted(word):
+    return not re.match("[\w]+", word) and word in ['is', 'in', 'the', 'for', 'was', 'and', 'of', 'to', 'a', 'he']
+
 def compile_training_data():
     curr.execute("SELECT added, deled, is_good FROM training_diffs")
     #format {"word": [a_spam, d_spam, a_good, d_good]}
     words = {}
-    print "Begin commit begin"
+    print "Begin sum words"
     for row in curr.fetchall():
         added = row[0]
         deled = row[1]
         for word in added.split():
+            if is_blacklisted(word):
+                continue
+            word = clean_word(word)
             if word not in words:
                 words[word] = get_word_status(word)
             if row[2] == 0:
@@ -24,6 +37,9 @@ def compile_training_data():
             else:
                 words[word][2] += 1
         for word in deled .split():
+            if is_blacklisted(word):
+                continue
+            word = clean_word(word)
             if word not in words:
                 words[word] = get_word_status(word)
             if row[2] == 0:
@@ -37,10 +53,6 @@ def compile_training_data():
         curr.execute("INSERT INTO training_words (word, add_spam, add_good, del_spam, del_good) \
                     VALUES (%(word)s, %(aspam)s, %(agood)s, %(dspam)s, %(dgood)s)", 
                 {"word":word, "aspam": word_data[0], "dspam":word_data[1], "agood":word_data[2], "dgood":word_data[3]})
-        #curr.execute("INSERT INTO training_words (word, add_spam, add_good, del_spam, del_good) \
-        #        VALUES (%(word)s, %(aspam)s, %(agood)s, %(dspam)s, %(dgood)s) WHERE word = %(word)s \
-        #        ON DUPLICATE KEY UPDATE add_spam=%(aspam)s, del_spam=%(dspam)s, add_good=%(agood)s, del_good=%(dgood)s",
-        #        {"word":word, "aspam": word_data[0], "dspam":word_data[1], "agood":word_data[2], "dgood":word_data[3]})
         conn.commit()
 
     print "Begin commiting probabilities"
@@ -49,11 +61,12 @@ def compile_training_data():
     zum = curr.fetchone()
     zum = zum[0]
 
+    curr.execute("DELETE FROM classifier_cache")
     curr.execute("SELECT word, add_spam, add_good, del_spam, del_good FROM training_words")
     for row in curr.fetchall():
         curr.execute("INSERT INTO classifier_cache (word, p_add_spam, p_add_good, p_del_spam, p_del_good) VALUES \
-                (%(word)s, %(aspam)s/%(sum)s, %(agood)s/%(sum)s, %(dspam)s/%(sum)s, %(dgood)s/%(sum)s)",
-                {"word" : row[0], "aspam":row[1], "agood":row[2], "dspam":row[3], "dgood":row[4], "sum":zum})
+                (%(word)s, %(aspam)s::float/%(sum)s, %(agood)s::float/%(sum)s, %(dspam)s::float/%(sum)s, %(dgood)s::float/%(sum)s)",
+                {"word" : row[0], "aspam":row[1]*1000.0, "agood":row[2]*1000.0, "dspam":row[3]*1000.0, "dgood":row[4]*1000.0, "sum":zum})
     conn.commit()
     print "Done"
 
