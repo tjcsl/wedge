@@ -13,7 +13,7 @@ def login():
             session["uid"] = response[1]
             flash("Login success.", "success")
             return redirect(url_for("index"))
-        flash("Login failed!", "error")
+        flash("Login failed!", "danger")
     return render_template("auth/login.html")
 
 def register():
@@ -26,7 +26,7 @@ def register():
             return render_template("auth/login.html")
         else:
             flash("Account creation failure, please try a different username."
-                  , "error")
+                  , "danger")
     return render_template("auth/register.html")
 
 def logout():
@@ -35,6 +35,6 @@ def logout():
         if "uid" in session: session.pop("uid")
         flash("Logged out.", "success")
         return redirect(url_for("login"))
-    flash("You are already logged out!", "success")
+    flash("You are already logged out!", "warning")
     return redirect(url_for("logout"))
         

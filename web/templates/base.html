@@ -11,6 +11,14 @@
 	<body>
 		{% block navbar %}
 		{% endblock %}
+		<div id="alerts">
+			{% for category, message in get_flashed_messages(with_categories = True) %}
+			<div class="uk-alert uk-alert-{{ category }}">
+				<a href="" class="uk-alert-close uk-close"></a>
+				<p>{{ message | safe }}</p>
+			</div>
+			{% endfor %}
+		</div>
 		{% block content %}
 		{% endblock %}
 	</body>
