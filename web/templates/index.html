@@ -6,14 +6,14 @@
 <div class="uk-grid">
 	<div class="containerc">
 	{% if session.username %}
-		<div class="uk-width-large-1-3 uk-pull-1-3">
+		<div class="uk-width-1-3 uk-pull-1-3">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">Welcome, {{ session.username }}!</div>
 				<hr />
 				<p>Welcome to wedge, the Wikipedia game.</p>
 			</div>
 		</div>
-		<div class="uk-width-large-1-3 uk-push-1-3">
+		<div class="uk-width-1-3 uk-push-1-3">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">{{ session.username }}'s stats at a glance:</div>
 				<hr />
@@ -24,7 +24,7 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="uk-width-large-1-2 uk-container-center">
+		<div class="uk-width-1-2 uk-container-center">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">What is wedge?</div>
 				<hr />
