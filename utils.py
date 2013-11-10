@@ -51,7 +51,7 @@ def get_diff_for_diffid(diffid):
             deledstring = deledstring + " " + i.text_content()
         else:
             deledstring = deledstring + " " + " ".join(diffchanges)
-    return addedstring, deledstring, title, comment
+    return addedstring, deledstring, title, summary
 
 
 def is_blacklisted(word):
