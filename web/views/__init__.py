@@ -7,6 +7,5 @@ import userinfo
 import userstats
 import verify
 import getusers
-import getuser
 import leaderboard
 import verifyemail
