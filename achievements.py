@@ -18,8 +18,7 @@ def always(wpusername):
 
 
 ACH_FUNCS = {
-    first_edit: 'Your First Edit',
-    always: 'Free Achievement'
+    first_edit: 'Your First Edit'
 }
 
 def check_all_achievements(wpusername):
