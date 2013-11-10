@@ -26,8 +26,8 @@
 	<div class="uk-offcanvas-bar">
 		<ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
 			{% for href, id, caption, icn in navbar %}
-			<li{% if id == thispage %} class="uk-active"{% endif %} data-uk-offcanvas="{target:'#sidebar'}">
-                <a href="{{ href|e }}">
+			<li{% if id == thispage %} class="uk-active"{% endif %}>
+				<a href="{{ href|e }}" uk-data-offcanvas="{target:'#sidebar'}">
                     <div class='uk-grid'>
                         <div class='uk-width-5-6'>{{ caption|e }}</div>
                         <div class='uk-width-1-6'><i class="uk-icon-{{ icn|e }}"></i></div>
