@@ -20,7 +20,7 @@ class Bot(irc.IRCClient):
             usern = msg.split("* ")[1].split(" *")[0].strip()
             self.queue.enqueue(process_diff, (diffid, usern))
         except Exception, e:
-            print e
+            pass
 
 
 class Factory(protocol.ClientFactory):
