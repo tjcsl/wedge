@@ -5,14 +5,14 @@
 {% block content %}
 <div class="uk-grid containerc indexcenter{% if session.username %}{% else %}nologin{% endif %}">
 	{% if session.username %}
-		<div class="uk-width-1-2">
+		<div class="uk-width-medium-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<h3 class="uk-panel-title">Welcome, {{ session.username }}!</h3>
 				<hr />
 				<p>Welcome to wedge, the Wikipedia game.</p>
 			</div>
 		</div>
-		<div class="uk-width-1-2">
+		<div class="uk-width-medium-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<h3 class="uk-panel-title">{{ session.username }}'s stats at a glance:</h3>
 				<hr />
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="uk-width-1-2">
+		<div class="uk-width-medium-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">What is wedge?</div>
 				<hr />
