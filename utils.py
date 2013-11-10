@@ -4,6 +4,7 @@ from urllib2 import urlopen
 import json
 import lxml.html
 import string
+import re
 curr = conn.cursor()
 
 
@@ -52,7 +53,7 @@ def get_diff_for_diffid(diffid):
 
 
 def is_blacklisted(word):
-    return not re.match("[\w]+", word) and word in ['is', 'in', 'the', 'for', 'was', 'and', 'of', 'to', 'a', 'he', 'it', 'if']
+    return not re.match("[\w]+", word) or word in ['is', 'in', 'the', 'for', 'was', 'and', 'of', 'to', 'a', 'he', 'it', 'if']
 
 
 def clean_word(word):
