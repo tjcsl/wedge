@@ -12,7 +12,7 @@ def train(revid2=None):
         form = request.form
         constructive = form["constructive"]
         revid = form["diffid"]
-        addedstring, delstring = get_diff_for_diffid(revid)
+        addedstring, deledstring = get_diff_for_diffid(revid)
         cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedstring, deledstring, constructive))
         conn.commit()
 
