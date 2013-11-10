@@ -87,9 +87,10 @@ def classify(added, deled):
             continue
         pspam += row[0]
         pgood += row[1]
-
-    pgood /= len(added_words) + len(deled_words)
-    pspam /= len(added_words) + len(deled_words)
+    if not(len(added_words)) and not(len(deled_words)):
+        return (0,0)
+    pgood /= (len(added_words) + len(deled_words))
+    pspam /= (len(added_words) + len(deled_words))
     return (pgood, pspam)
 
 
