@@ -18,7 +18,9 @@ def login():
 
 def register():
     if request.method == "POST":
-        if web.auth.create_account(
+        if request.form["password"] != request.form["password2"]:
+            flash("Error: your passwords didn't match.", "danger")
+        elif web.auth.create_account(
                 request.form["username"],
                 request.form["password"],
                 request.form["email"]
