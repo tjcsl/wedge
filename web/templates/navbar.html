@@ -25,6 +25,12 @@
 			{% for href, id, caption, icn in navbar %}
 			<li{% if id == thispage %} class="uk-active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}   <i class="uk-icon-{{ icn|e }}"></i></a></li>
 			{% endfor %}
+			<li>
+				<form class="uk-search" uk-data-search>
+					<input class="uk-search-field" type="search" placeholder="Search for users...">
+					<button class="uk-search-close" type="reset"></button>
+				</form>
+			</li>
 		</ul>
 	</div>
 </div>

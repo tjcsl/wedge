@@ -27,16 +27,22 @@
 {% endblock %}
 {% block content %}
 <div id="container">
-<h1>User statistics</h1>
-{% for e in edits[::-1] %}
-    <div class="uk-panel panel-{% if e.score > 2 %}good{% else %}bad{% endif %}">
-        <div class="uk-panel-badge uk-badge {% if e.score <= 2 %}badge-bad{% endif %}">{{ e.score }}</div>
-        <div class="content">
-            <h3 class="uk-panel-title" style="float:left;">{{ e.page }}</h3>
-            <i style="float:right; padding-right:100px;">{{ e.summary }}</i>
-        </div>
-    </div>
-    <div style="padding-top:15px;padding-bottom:15px;" />
-{% endfor %}
+	<h1>User statistics for {{ uname }}</h1>
+{% if edits[0] %}
+	{% for e in edits[::-1] %}
+	    <div class="uk-panel panel-{% if e.score > 2 %}good{% else %}bad{% endif %}">
+	        <div class="uk-panel-badge uk-badge {% if e.score <= 2 %}badge-bad{% endif %}">{{ e.score }}</div>
+	        <div class="content">
+	            <h3 class="uk-panel-title" style="float:left;">{{ e.page }}</h3>
+	            <i style="float:right; padding-right:100px;">{{ e.summary }}</i>
+	        </div>
+	    </div>
+	    <div style="padding-top:15px;padding-bottom:15px;" />
+	{% endfor %}
+{% else %}
+<div class="uk-panel uk-panel-box uk-panel-box-primary">
+	<p>You have no edits! :(</p>
+</div>
+{% endif %}
 </div>
 {% endblock %}
