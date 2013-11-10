@@ -1,7 +1,7 @@
 from db import conn
 import re
 import string
-from util import clean_word, is_blacklisted
+from utils import is_blacklisted
 curr = conn.cursor()
 
 def get_word_status(word):
@@ -20,20 +20,20 @@ def compile_training_data():
     for row in curr.fetchall():
         added = row[0]
         deled = row[1]
-        for word in added.split():
+        added_words = re.findall(r'[\w]+', added)
+        deled_words = re.findall(r'[\w]+', deled)
+        for word in added_words:
             if is_blacklisted(word):
                 continue
-            word = clean_word(word)
             if word not in words:
                 words[word] = get_word_status(word)
             if row[2] == 0:
                 words[word][0] += 1
             else:
                 words[word][2] += 1
-        for word in deled .split():
+        for word in deled_words:
             if is_blacklisted(word):
                 continue
-            word = clean_word(word)
             if word not in words:
                 words[word] = get_word_status(word)
             if row[2] == 0:
