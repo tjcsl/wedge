@@ -59,7 +59,7 @@ automatically classify them. Good luck, and edit well!
 In order to use your account, please click this link to
 verify your account: http://wedge.csssuf.net/verifyemail?key=%s
                   
--- The wedge team""" % (registration_uuid.hex),
+-- The wedge team""" % (registration_uuid),
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
