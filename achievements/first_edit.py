@@ -1,3 +1,5 @@
+import achievements
+
 class FirstEdit(achievements.Achievement):
     def __init__(self):
         super(FirstEdit, self).__init__(self.check, "Your First Edit", "static/first_acc.png")
