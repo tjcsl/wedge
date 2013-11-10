@@ -3,6 +3,7 @@ from db import conn
 from flask import session, flash, redirect, url_for
 from functools import wraps
 from postmark import PMMail
+import os
 
 def loginrequired(f):
     @wraps(f)
