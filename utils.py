@@ -58,17 +58,12 @@ def is_blacklisted(word):
     return not re.match("[\w]+", word) or word in ['is', 'in', 'the', 'for', 'was', 'and', 'of', 'to', 'a', 'he', 'it', 'if']
 
 
-def clean_word(word):
-    for i in string.punctuation:
-        word = word.replace(i, "")
-    return word.lower()
-
 def classify(added, deled):
     """ Returns tuple of (good, bad) """
-    added_words = added.split()
-    added_words = [clean_word(w) for w in added_words]
-    deled_words = deled.split()
-    deled_words = [clean_word(w) for w in deled_words]
+    added = added.lower()
+    deled = deled.lower()
+    added_words = re.findall(r'[\w]+', added)
+    deled_words = re.findall(r'[\w]+', deled)
 
     pspam = 0
     pgood = 0
