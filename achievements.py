@@ -13,7 +13,7 @@ def first_edit(wpusername):
 
 def onehundred_points(wpusername):
     __display__ = "One Hundred Points"
-    cur = cunn.cursor()
+    cur = conn.cursor()
     cur.execute("SELECT sum(score) FROM edits WHERE username=%s", (wpusername,))
     row = cur.fetchone()
     cur.execute("WITH SELECT uid AS uid FROM users WHERE wp_username=%s\
