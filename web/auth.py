@@ -47,11 +47,11 @@ def create_account(username, password, email):
                   sender = "wedge@csssuf.net",
                   to = email,
                   text_body = """Hello!
-                  Welcome to wedge, the Wikipedia game. You can get going
-                  immediately; wedge will track all your Wikipedia edits and
-                  automatically classify them. Good luck, and edit well!
+Welcome to wedge, the Wikipedia game. You can get going
+immediately; wedge will track all your Wikipedia edits and
+automatically classify them. Good luck, and edit well!
                   
-                  -- The wedge team""",
+-- The wedge team""",
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
