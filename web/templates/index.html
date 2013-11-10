@@ -17,7 +17,10 @@
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">{{ session.username }}'s stats at a glance:</div>
 				<hr />
-				<p>Stats should go here</p>
+				<p>Your number of edits (that wedge knows of): {{ len(get_edits(session.uid)) }}</p>
+				<p>Total number of edits (that wedge knows of): {{ len(get_edits()) }}</p>
+				<p>Your total score: {{ get_total_score(session.uid) }}</p>
+				<p>Your average score for a single edit: {{ get_avg_score(session.uid) }}</p>
 			</div>
 		</div>
 	{% else %}

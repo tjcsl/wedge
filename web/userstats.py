@@ -9,7 +9,7 @@ def get_edits(user=None):
         cur.execute("SELECT score FROM edits")
         edits = cur.fetchall()
     else:
-        cur.execute("SELECT score FROM edits WHERE username=(SELECT wp_username from users where uid=%s", [str(uid)])
+        cur.execute("SELECT score FROM edits WHERE username=(SELECT wp_username from users where uid=%s)", [str(uid)])
         edits = len(cur.fetchall())
     cur.close()
     return edits
