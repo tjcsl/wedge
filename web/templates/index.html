@@ -3,7 +3,7 @@
 <title>Hello, world!</title>
 {% endblock %}
 {% block content %}
-<div class="uk-grid containerc">
+<div class="uk-grid containerc indexcenter{% if session.username %}{% else %}nologin{% endif %}">
 	{% if session.username %}
 		<div class="uk-width-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
@@ -23,7 +23,7 @@
 			</div>
 		</div>
 	{% else %}
-		<div class="uk-width-1-2 uk-container-center">
+		<div class="uk-width-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
 				<div class="uk-panel-title">What is wedge?</div>
 				<hr />
