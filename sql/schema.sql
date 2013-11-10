@@ -7,8 +7,7 @@ CREATE TABLE IF NOT EXISTS users (
     score float default 0
 );
 
-DROP TABLE IF EXISTS training_words;
-CREATE TABLE training_words (
+CREATE TABLE IF NOT EXISTS training_words (
     wid serial unique,
     word varchar(128) unique,
     add_spam integer,
@@ -17,8 +16,7 @@ CREATE TABLE training_words (
     del_good integer
 );
 
-DROP TABLE IF EXISTS classifier_cache;
-CREATE TABLE classifier_cache (
+CREATE TABLE IF NOT EXISTS classifier_cache (
     wid serial unique,
     word varchar(128),
     p_add_spam float,
@@ -26,6 +24,15 @@ CREATE TABLE classifier_cache (
     p_del_spam float,
     p_del_good float
 );
+
+CREATE TABLE IF NOT EXISTS edits (
+    id serial unique,
+    username varchar(512),
+    added text,
+    deled text,
+    score float
+);
+   
 
 CREATE TABLE IF NOT EXISTS training_diffs (
     did serial unique,
