@@ -7,10 +7,14 @@ def sf(f):
 
 
 @sf
-def test_score_func(diff):
-    return 9000
+def length(diff):
+    # +1 point for every 100 characters modified
+    return len(diff)*0.01
 
 
 @sf
-def test_score_func2(diff):
-    return len(diff)
+def each_edit(diff):
+    # +1 point for every edit
+    return 1
+
+
