@@ -1,6 +1,6 @@
 {% extends "navbar.html" %}
 {% block head %}
-<title>Hello, world!</title>
+<title>Home | wedge</title>
 {% endblock %}
 {% block content %}
 <div class="uk-grid containerc indexcenter{% if session.username %}{% else %}nologin{% endif %}">
@@ -38,5 +38,26 @@
 			</div>
 		</div>
 	{% endif %}
+</div>
+<div class="uk-grid containerc indexcenternologin">
+	<div class="uk-width-1-2">
+		<table class="uk-table">
+			<caption>Top 10 Leaderboard</caption>
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for i in lb %}
+				<tr>
+					<td>{{ i[0] }}</td>
+					<td>{{ i[1] }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
 </div>
 {% endblock %}

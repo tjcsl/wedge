@@ -1,0 +1,27 @@
+{% extends "navbar.html" %}
+{% block head %}
+<title>Top 25 Leaderboard</title>
+{% endblock %}
+{% block content %}
+<div class="uk-grid containerc indexcenternologin">
+	<div class="uk-width-1-1">
+		<table class="uk-table">
+			<caption>Top 25 Leaderboard</caption>
+			<thead>
+				<tr>
+					<th>Username</th>
+					<th>Score</th>
+				</tr>
+			</thead>
+			<tbody>
+			{% for i in users %}
+				<tr>
+					<td>{{ i[0] }}</td>
+					<td>{{ i[1] }}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+{% endblock %}
