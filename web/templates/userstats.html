@@ -31,7 +31,7 @@
 {% if edits[0] %}
 	{% for e in edits[::-1] %}
 	    <div class="uk-panel panel-{% if e.score > 2 %}good{% else %}bad{% endif %}">
-	        <div class="uk-panel-badge uk-badge {% if e.score <= 2 %}badge-bad{% endif %}">{{ e.score }}</div>
+	        <div class="uk-panel-badge uk-badge {% if e.score <= 2 %}badge-bad{% endif %}">{{ round(e.score, 1) }}</div>
 	        <div class="content">
 	            <h3 class="uk-panel-title" style="float:left;">{{ e.page }}</h3>
 	            <i style="float:right; padding-right:100px;">{{ e.summary }}</i>
