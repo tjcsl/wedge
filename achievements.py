@@ -22,8 +22,8 @@ def gen_point_achievement(score, name, desc):
         cur = conn.cursor()
         cur.execute("SELECT sum(score) FROM edits WHERE username=%s", (wpusername,))
         row = cur.fetchone()
-        cur.execute("WITH uid AS (SELECT uid FROM users WHERE wp_username=%s)\
-                SELECT 1 FROM achievements WHERE uid=uid AND name=%s", (wpusername, ach.name))
+        cur.execute("WITH uuid AS (SELECT uid FROM users WHERE wp_username=%s)\
+                SELECT 1 FROM achievements WHERE uid=uuid AND name=%s", (wpusername, ach.name))
         return row[0] > score and cur.fetchone() is None
     return ach
 
