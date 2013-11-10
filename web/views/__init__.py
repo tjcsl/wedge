@@ -1,5 +1,5 @@
-import ach
-import ach_all
+#import ach
+#import ach_all
 import auth
 import core
 import training
@@ -8,3 +8,4 @@ import userstats
 import verify
 import getusers
 import leaderboard
+import verifyemail

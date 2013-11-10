@@ -4,6 +4,7 @@ from flask import session, flash, redirect, url_for
 from functools import wraps
 from postmark import PMMail
 import os
+import uuid
 
 def loginrequired(f):
     @wraps(f)
@@ -28,7 +29,7 @@ def is_valid_login(username, password):
     cur.close()
     if matching is not None:
         if not matching[1]:
-            flash("Your account is locked. Please contact an administrator.", "danger")
+            flash("Your account is locked, or you have not completed email verification. Please contact an administrator.", "danger")
             return False
         return (username, matching[0])
     return False
@@ -45,6 +46,7 @@ def create_account(username, password, email, wp_username):
     emails = [matching[1] for matching in fall]
     if username in usernames or len(username) < 4 or len(email) < 7 or email in emails:
         return False
+    registration_uuid = uuid.uuid1()
     emsg = PMMail(api_key = os.environ.get('POSTMARK_API_KEY'),
                   subject = "Welcome to wedge!",
                   sender = "wedge@csssuf.net",
@@ -53,13 +55,15 @@ def create_account(username, password, email, wp_username):
 Welcome to wedge, the Wikipedia game. You can get going
 immediately; wedge will track all your Wikipedia edits and
 automatically classify them. Good luck, and edit well!
+
+In order to use your account, please click this link to
+verify your account: http://wedge.csssuf.net/verifyemail?key=%s
                   
--- The wedge team""",
+-- The wedge team""" % (registration_uuid.hex),
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("INSERT INTO users (username, passwd_hash, email, wp_username) VALUES (%s,%s,%s,%s)",
-                (username, passwd_hash, email, wp_username))
+    cur.execute("INSERT INTO users (username, passwd_hash, email, wp_username, enabled, reguuid) VALUES (%s,%s,%s,%s,0,%s)", (username, passwd_hash, email, wp_username, registration_uuid.hex)
     conn.commit()
     cur.close()
     return True
