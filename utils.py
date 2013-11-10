@@ -33,7 +33,7 @@ def get_diff_for_diffid(diffid):
     pages = rev["query"]["pages"]
     diff = pages.values()[0]["revisions"][0]["diff"]["*"]
     summary = pages.values()[0]["revisions"][0]["comment"]
-    title = pages.values()[0]["pageid"]
+    title = pages.values()[0]["title"]
     diff = lxml.html.document_fromstring(diff)
     addedlines = diff.xpath("//td[@class='diff-addedline']")
     deledlines = diff.xpath("//td[@class='diff-deletedline']")
