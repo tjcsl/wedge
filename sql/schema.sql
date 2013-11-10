@@ -28,15 +28,22 @@ CREATE TABLE IF NOT EXISTS classifier_cache (
 CREATE TABLE IF NOT EXISTS edits (
     id serial unique,
     username varchar(512),
+    summary text,
+    page_title text,
     added text,
     deled text,
     score float
 );
-   
 
 CREATE TABLE IF NOT EXISTS training_diffs (
     did serial unique,
     added text,
     deled text,
     is_good boolean
+);
+
+CREATE TABLE IF NOT EXISTS achievements (
+    id serial unique,
+    username varchar(512),
+    name text
 );

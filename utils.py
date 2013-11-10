@@ -5,6 +5,7 @@ import json
 import lxml.html
 import string
 import re
+import achievements
 curr = conn.cursor()
 
 
@@ -23,6 +24,7 @@ def process_diff(diffiduser):
     for f in score_funcs:
         zum += f(diff[0], diff[1])
     cur.execute("INSERT INTO edits (username, added, deled, score, page_title, summary) VALUES (%s, %s, %s, %s, %s, %s)", (user, diff[0], diff[1], zum, diff[2], diff[3]))
+    achievements.check_all_achievements(curr, user)
     conn.commit()
     cur.close()
 
