@@ -1,7 +1,15 @@
 import hashlib
-import web
 from db import conn
-from flask import session
+from flask import session, flash, redirect, url_for
+
+
+def loginrequired(f):
+    def wrappedf(*args, **kwargs):
+        if 'uid' in session:
+            return f()
+        flash("You need to be logged in to access this page.", "danger")
+        return redirect(url_for("login"))
+    return wrappedf
 
 
 def is_valid_login(username, password):
