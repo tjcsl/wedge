@@ -1,4 +1,4 @@
-CREATE TABLE users IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS users (
     uid serial,
     username varchar(512),
     wp_username varchar(512),
@@ -26,7 +26,7 @@ CREATE TABLE classifier_cache (
     p_del_good float
 );
 
-CREATE TABLE training_diffs IF NOT EXISTS (
+CREATE TABLE IF NOT EXISTS training_diffs (
     did serial unique,
     added text,
     deled text,
