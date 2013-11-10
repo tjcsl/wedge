@@ -35,16 +35,12 @@
                 </a>
             </li>
 			{% endfor %}
-			<li>
-				<div id="searchid" class="uk-offcanvas">
-					<div id="uk-offcanvas-bar">
-						<form class="uk-search" uk-data-search="{source:'/getusers.json'}">
-							<input class="uk-search-field" type="search" placeholder="Search for users...">
-							<button class="uk-search-close" type="reset"></button>
-						</form>
-					</div>
-				</div>
-			</li>
+			<!-- Nope, this is still broken <li>
+				<form class="uk-search" uk-data-search="{source:'/getusers.json'}">
+					<input class="uk-search-field" type="search" placeholder="Search for users...">
+					<button class="uk-search-close" type="reset"></button>
+				</form>
+			</li> -->
 		</ul>
 	</div>
 </div>
