@@ -1,9 +1,11 @@
 import hashlib
 from db import conn
 from flask import session, flash, redirect, url_for
+from functools import wraps
 
 
 def loginrequired(f):
+    @wraps(f)
     def wrappedf(*args, **kwargs):
         if 'uid' in session:
             return f()
