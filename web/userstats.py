@@ -33,4 +33,5 @@ def hue():
     return {'get_edits': get_edits,
             'get_total_score': get_total_score,
             'get_avg_score': get_avg_score,
-            'len': len}
+            'len': len,
+            'round': round}
