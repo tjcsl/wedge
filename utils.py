@@ -14,7 +14,7 @@ def process_diff(diffiduser):
     diff = get_diff_for_diffid(diffid)
     zum = 0
     for f in score_funcs:
-        zum += f(diff)
+        zum += f(diff[0], diff[1])
     print zum, diffid
 
 
