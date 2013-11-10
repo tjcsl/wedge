@@ -3,5 +3,26 @@
 <title>Hello, world!</title>
 {% endblock %}
 {% block content %}
-!dlrow ,olleH
+{% if session.username %}
+You're logged in!
+{% else %}
+<div class="uk-grid">
+	<div class="containerc">
+		<div class="uk-width-large-1-2 uk-container-center">
+			<div class="uk-panel uk-panel-box uk-panel-box-primary">
+				<div class="uk-panel-title">What is wedge?</div>
+				<hr />
+				<p>wedge makes Wikipedia editing more fun. It analyzes your edits and rates
+				   them by how constructive they are, and awards you points correspondingly.
+				   Track your progress by getting instant feedback on your edits, and rack up
+				   achievements as your points increase. <!--You can even compare with your
+				   friends, as wedge posts to social media sites including Facebook and
+				   Twitter. -->So <a href="/register">join today</a>, and become an active 
+				   and helpful contributor to Wikipedia while competing with other wedge
+				   users to be the most constructive!</p>
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
 {% endblock %}
