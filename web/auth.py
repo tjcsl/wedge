@@ -63,7 +63,7 @@ verify your account: http://wedge.csssuf.net/verifyemail?key=%s
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("INSERT INTO users (username, passwd_hash, email, wp_username, enabled, reguuid) VALUES (%s,%s,%s,%s,0,%s)", (username, passwd_hash, email, wp_username, registration_uuid.hex)
+    cur.execute("INSERT INTO users (username, passwd_hash, email, wp_username, enabled, reguuid) VALUES (%s,%s,%s,%s,0,%s)", (username, passwd_hash, email, wp_username, registration_uuid.hex))
     conn.commit()
     cur.close()
     return True
