@@ -44,6 +44,6 @@ CREATE TABLE IF NOT EXISTS training_diffs (
 
 CREATE TABLE IF NOT EXISTS achievements (
     id serial unique,
-    username varchar(512),
+    uid integer,
     name text
 );
