@@ -1,11 +1,16 @@
-#list of registered score affecting-functions
-
 score_funcs = []
 
+
+def sf(f):
+    score_funcs.append(f)
+    return f
+
+
+@sf
 def test_score_func(diff):
     return 9000
-score_funcs.append(test_score_func)
 
+
+@sf
 def test_score_func2(diff):
     return len(diff)
-score_funcs.append(test_score_func2)
