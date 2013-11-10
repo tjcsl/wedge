@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS users (
     wp_username varchar(512),
     passwd_hash varchar(128),
     email varchar(512),
-    score float
+    score float default 0
 );
 
 DROP TABLE IF EXISTS training_words;
