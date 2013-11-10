@@ -73,14 +73,14 @@ def classify(added, deled):
     for w in added_words:
         if is_blacklisted(w):
             continue
-        curr.execute("SELECT p_add_spam, p_add_good WHERE word = %(word)s", {"word":w})
+        curr.execute("SELECT p_add_spam, p_add_good FROM classifier_cache WHERE word = %(word)s", {"word":w})
         row = curr.fetchone()
         pspam += curr[0]
         pgood += curr[1]
     for w in added_words:
         if is_blacklisted(w):
             continue
-        curr.execute("SELECT p_del_spam, p_del_good WHERE word = %(word)s", {"word":w})
+        curr.execute("SELECT p_del_spam, p_del_good FROM classifier_cache WHERE word = %(word)s", {"word":w})
         row = curr.fetchone()
         pspam += curr[0]
 
