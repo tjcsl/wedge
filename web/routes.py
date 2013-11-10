@@ -23,6 +23,5 @@ add_views({
     '/logout/': auth.logout,
     '/register/': auth.register,
     '/userinfo/': userinfo.uinfo,
-    '/userstats/': userstats.ustats,
-    '/edits': edits
+    '/userstats/': userstats.ustats
 })
