@@ -13,9 +13,10 @@ def first_edit(wpusername):
 
 def onehundred_points(wpusername):
     __display__ = "One Hundred Points"
+    cur = conn.cursor()
     cur.execute("SELECT sum(score) FROM edits WHERE username=%s", (wpusername,))
     row = cur.fetchone()
-    cur.execute("WITH SELECT uid AS uid FROM users WHERE wp_username=%s\
+    cur.execute("WITH uid AS (SELECT uid FROM users WHERE wp_username=%s)\
             SELECT 1 FROM achievements WHERE uid=uid AND name=%s", (wpusername, __display__))
     return row[0] > 100 and cur.fetchone() is None
 
