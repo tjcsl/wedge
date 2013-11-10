@@ -19,9 +19,7 @@ def each_edit(added, deled):
     return 1
 
 
+@sf
 def get_score(added, deled):
     notspam, spam = utils.classify(added, deled)
-    score = ((notspam * 2) + (spam * 2))
-    for i in score_funcs:
-        score += i(added, deled)
-    return score
+    return ((notspam * 20) - (spam * 20))
