@@ -1,6 +1,8 @@
 from score import score_funcs
 from db import conn
 from urllib2 import urlopen
+import json
+import lxml.html
 curr = conn.cursor()
 
 

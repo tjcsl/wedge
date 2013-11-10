@@ -1,10 +1,9 @@
 from flask import request, render_template
 from random import randint
 from urllib2 import urlopen
-import json
 from db import conn
 import re
-import lxml.html
+import json
 from utils import get_diff_for_diffid
 cur = conn.cursor()
 
