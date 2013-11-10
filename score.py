@@ -8,20 +8,20 @@ def sf(f):
 
 
 @sf
-def length(diff):
+def length(added, deled):
     # +1 point for every 100 characters modified
-    return len(diff)*0.01
+    return len(added, deled)*0.01
 
 
 @sf
-def each_edit(diff):
+def each_edit(added, deled):
     # +1 point for every edit
     return 1
 
 
-def get_score(diff):
-    if utils.get_is_spam_score(diff)
+def get_score(added, deled):
+    scores = utils.classify(added, deled)
     score = 0
     for i in score_funcs:
-        score += i(diff)
+        score += i(added, deled)
     return score
