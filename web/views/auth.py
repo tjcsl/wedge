@@ -26,7 +26,7 @@ def register():
                 request.form["username"],
                 request.form["password"],
                 request.form["email"],
-                request.form["wp_username"]
+                request.form["wp_username"].capitalize()
                 ):
                 flash("Account created. Please login.", "success")
                 return render_template("auth/login.html")
