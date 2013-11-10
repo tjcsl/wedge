@@ -1,3 +1,4 @@
+import utils
 score_funcs = []
 
 
@@ -18,3 +19,9 @@ def each_edit(diff):
     return 1
 
 
+def get_score(diff):
+    if utils.get_is_spam_score(diff)
+    score = 0
+    for i in score_funcs:
+        score += i(diff)
+    return score
