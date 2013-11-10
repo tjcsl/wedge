@@ -6,7 +6,7 @@ def verifye():
     if not request.args or not "key" in request.args:
         return redirect("/")
     cur = conn.cursor()
-    cur.execute("SELECT reguuid, username, enabled FROM users where reguuid='%s'", (request.args["key"],))
+    cur.execute("SELECT reguuid::string, username, enabled FROM users where reguuid=%s", (request.args["key"],))
     results = cur.fetchall()
     if not results:
         flash("UUID not found in database; if you came here from a registration email, please check that you have entered the URL correctly.", "danger")
