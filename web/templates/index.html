@@ -3,19 +3,18 @@
 <title>Hello, world!</title>
 {% endblock %}
 {% block content %}
-<div class="uk-grid">
-	<div class="containerc">
+<div class="uk-grid containerc">
 	{% if session.username %}
-		<div class="uk-width-1-3 uk-pull-1-3">
+		<div class="uk-width-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
-				<div class="uk-panel-title">Welcome, {{ session.username }}!</div>
+				<h3 class="uk-panel-title">Welcome, {{ session.username }}!</h3>
 				<hr />
 				<p>Welcome to wedge, the Wikipedia game.</p>
 			</div>
 		</div>
-		<div class="uk-width-1-3 uk-push-1-3">
+		<div class="uk-width-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
-				<div class="uk-panel-title">{{ session.username }}'s stats at a glance:</div>
+				<h3 class="uk-panel-title">{{ session.username }}'s stats at a glance:</h3>
 				<hr />
 				<p>Your number of edits (that wedge knows of): {{ len(get_edits(session.uid)) }}</p>
 				<p>Total number of edits (by wedge users): {{ len(get_edits()) }}</p>
@@ -39,6 +38,5 @@
 			</div>
 		</div>
 	{% endif %}
-	</div>
 </div>
 {% endblock %}
