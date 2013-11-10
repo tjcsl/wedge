@@ -3,7 +3,7 @@
 <title>Home | wedge</title>
 {% endblock %}
 {% block content %}
-<div class="uk-grid containerc uk-container-center">
+<div class="uk-grid containerc indexcenter{% if session.username %}{% else %}nologin{% endif %}">
 	{% if session.username %}
 		<div class="uk-width-medium-1-2">
 			<div class="uk-panel uk-panel-box uk-panel-box-primary">
