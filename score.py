@@ -25,6 +25,11 @@ def links(added, deled):
 
 
 @sf
+def templates(added, deled):
+    return added.count("{{") * 0.25
+
+
+@sf
 def get_score(added, deled):
     notspam, spam = utils.classify(added, deled)
     return ((notspam * 20) - (spam * 20))
