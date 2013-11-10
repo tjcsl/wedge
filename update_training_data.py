@@ -47,8 +47,8 @@ def compile_training_data():
         curr.execute("INSERT INTO training_words (word, add_spam, add_good, del_spam, del_good) \
                     VALUES (%(word)s, %(aspam)s, %(agood)s, %(dspam)s, %(dgood)s)", 
                 {"word":word, "aspam": word_data[0], "dspam":word_data[1], "agood":word_data[2], "dgood":word_data[3]})
-        conn.commit()
 
+    conn.commit()
     print "Begin commiting probabilities"
     curr.execute("SELECT sum(add_spam) + sum(add_good) + sum(del_spam) + sum(del_good) FROM training_words LIMIT 1")
 
