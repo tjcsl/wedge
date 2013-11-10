@@ -17,7 +17,7 @@ def process_diff(diffiduser):
     cur = conn.cursor()
     cur.execute("SELECT wp_username FROM users")
     rusers = [r[0] for r in cur.fetchall()]
-    if user.lower() not in [i.lower() for i in rusers]:
+    if user not in rusers:
         return
     diff = get_diff_for_diffid(diffid)
     zum = 0
