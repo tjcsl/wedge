@@ -9,14 +9,19 @@ def sf(f):
 
 @sf
 def length(added, deled):
-    # +1 point for every 100 characters modified
-    return (len(added) + len(deled))*0.01
+    # +1 point for every 1000 characters modified
+    return (len(added) + len(deled))*0.001
 
 
 @sf
 def each_edit(added, deled):
     # +1 point for every edit
     return 1
+
+
+@sf
+def links(added, deled):
+    return added.count("[[")*0.5
 
 
 @sf
