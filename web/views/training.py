@@ -7,7 +7,7 @@ import re
 import lxml.html
 cur = conn.cursor()
 
-def train():
+def train(revid=None):
     if request.method=="POST":
         form = request.form
         constructive = form["constructive"]
@@ -38,7 +38,8 @@ def train():
         cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedstring, deledstring, constructive))
         conn.commit()
 
-    revid = randint(57000000, 58500000)
+    if not revid:
+        revid = randint(57000000, 58500000)
     c = urlopen("http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvdiffto=prev&revids=%s" % revid).read()
     c = json.loads(c)
     if "pages" not in c["query"]:

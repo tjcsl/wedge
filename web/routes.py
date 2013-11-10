@@ -17,7 +17,7 @@ def add_views(views):
 
 add_views({
     '/': core.index,
-    '/train/': training.train,
+    '/train/<int:revid>/': training.train,
     '/login/': auth.login,
     '/logout/': auth.logout,
     '/register/': auth.register,
