@@ -31,7 +31,7 @@ def is_valid_login(username, password):
     return False
 
 
-def create_account(username, password, email):
+def create_account(username, password, email, wp_username):
     """
     Create an account given a username/password combination.
     """
@@ -55,8 +55,8 @@ automatically classify them. Good luck, and edit well!
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("INSERT INTO users (username, passwd_hash, email) VALUES (%s,%s,%s)",
-                (username, passwd_hash, email))
+    cur.execute("INSERT INTO users (username, passwd_hash, email, wp_username) VALUES (%s,%s,%s,%s)",
+                (username, passwd_hash, email, wp_username))
     conn.commit()
     cur.close()
     return True

@@ -5,10 +5,7 @@ import hashlib
 import json
 
 
-def verify_user(wp_username):
-    cur = conn.cursor()
-    cur.execute("SELECT username FROM users WHERE wp_username=%s", [wp_username])
-    username = cur.fetchone()[0]
+def verify_user(username, wp_username):
     verifystr = "wedge-verify " + username
     url = "http://en.wikipedia.org/w/api.php?action=query&prop=revisions&format=json&rvprop=content&rvlimit=1&titles=" + quote_plus("User:" + wp_username + "/wedge.js")
     result = urlopen(url).read()

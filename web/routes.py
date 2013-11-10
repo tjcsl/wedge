@@ -23,5 +23,6 @@ add_views({
     '/logout/': auth.logout,
     '/register/': auth.register,
     '/userinfo/': userinfo.uinfo,
-    '/userstats/': userstats.ustats
+    '/userstats/': userstats.ustats,
+    '/verify/': verify.verify
 })
