@@ -14,7 +14,7 @@ def verifye():
     elif results[2] == 1:
         flash("Account already enabled.", "warning")
         return redirect("/")
-    cur.execute("UPDATE users SET enabled=1 WHERE reguuid=%s", results[0])
+    cur.execute("UPDATE users SET enabled=%s WHERE reguuid=%s", (True, results[0]))
     conn.commit()
     cur.close()
     flash("%s, your account has been successfully activated. Please log in." % (results[1]), "success")
