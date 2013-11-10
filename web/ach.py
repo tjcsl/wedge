@@ -1,6 +1,5 @@
 from db import conn
 
-
 def get_user_achievements(user):
     cur = conn.cursor()
     cur.execute("SELECT uid FROM users WHERE username=%s", (user,))

@@ -26,6 +26,7 @@ add_views({
     '/userstats/': userstats.ustats,
     '/verify/': verify.verify,
     '/achievements/': ach.ach,
+    '/achievement_list/': ach_all.ach_all,
     '/getusers.json': getusers.getusers,
     '/leaderboard/': leaderboard.leaderboard
 })

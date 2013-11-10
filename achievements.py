@@ -33,8 +33,8 @@ ACH_FUNCS = [
         gen_point_achievement(10, "Ten Points", "Awarded for getting 10 points"),
         gen_point_achievement(100, "One Hundred Points", "Awarded for acculating 100 points"),
         gen_point_achievement(500, "Five Hundred Points", "Acquired when you have reached the lofty heights of 500 points"),
-        gen_point_achievement(1000, "One Thousand Points", "Awarded for stashing away 1,000 points")
-        gen_point_achievement(9001, "Over 9000", "Get OVER 9000 POINTS)]
+        gen_point_achievement(1000, "One Thousand Points", "Awarded for stashing away 1,000 points"),
+        gen_point_achievement(9001, "Over 9000", "Get OVER 9000 POINTS")]
 
 
 def check_all_achievements(wpusername):

@@ -1,0 +1,14 @@
+{% extends "navbar.html" %}
+{% block head %}
+<title>Achievement List</title>
+{% endblock %}
+{% block content %}
+<div class="uk-panel uk-width-1-2" style="margin-left:auto; margin-right:auto">
+    <div class="uk-panel-title">List Of Achievements</div>
+    <dl class="uk-description-list-horizontal">
+        {% for i in ach %}
+        <dt> {{ i }} </dt> <dd> {{ ach[i] }} </dd>
+        {% endfor %}
+    </dl>
+</div>
+{% endblock %}
