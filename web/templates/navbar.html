@@ -9,6 +9,14 @@
 <nav class="uk-navbar">
 	<a href="/" class="uk-navbar-brand">wedge</a>
 	<a href="#sidebar" data-uk-offcanvas class="uk-navbar-toggle"></a>
+	<div class="uk-navbar-flip">
+		<ul class="uk-navbar-nav">
+				{% if session.uid %}<li><a href="/logout">Log out</a></li>
+				{% else %}<li><a href="/login">Log in</a></li>
+				<li><a href="/register">Create account</a></li>
+				{% endif %}
+		</ul>
+	</div>
 </nav>
 <div id="sidebar" class="uk-offcanvas">
 	<div class="uk-offcanvas-bar">
