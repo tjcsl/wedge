@@ -1,0 +1,25 @@
+{% extends "navbar.html" %}
+{% block head %}
+<title>Achievements</title>
+<style>
+    .uk-panel {
+        padding-left: 40px;
+    }
+    .uk-panel-badge {
+        padding-right: 80px;
+    }
+    span {
+        font-size:40px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<h1>Achievements for {{ name }}</h1>
+{% for i in ach %}
+<div class="uk-panel">
+    <div class="uk-panel-badge"><span><i class="uk-icon-trophy"></i></span></div>
+    <h3 class="uk-panel-title">{{ i }}</h3>
+</div>
+<hr />
+{% endfor %}
+{% endblock %}

@@ -1,28 +1,36 @@
-<html>
-    <head>
+{% extends "navbar.html" %}
+{% block head %}
         <title>Training data entry</title>
+{% endblock %}
+{% block content %}
         <style>
-            td.diff-addedline{background:#ccffcc;font-size:smaller;border:solid 2px black}td.diff-deletedline{background:#ffffaa;font-size:smaller;border:dotted 2px black}
+            td.diff-addedline{background:#ccffcc;}
+            td.diff-deletedline{background:#ffffaa;}
             .diffchange{color:red;font-weight:bold;text-decoration:underline}
-            #editsummary{font-size:30px;color:green}
         </style>
-    </head>
-    <body>
-        <div id="diff1"><table>{{ diff|safe }}</table></div>
-        <br />
-        <div id="editsummary">{{ editsummary }}</div>
-        <br />
-        <form action="" method="post">
-            <input type="hidden" name="diffid" value="{{ diffid }}" />
-            <input type="hidden" name="constructive" value="1" />
-            <input type="submit" value="Good" />
-        </form>
-        <a href="/train/">Neutral</a>
-        <form action="" method="post">
-            <input type="hidden" name="diffid" value="{{ diffid }}" />
-            <input type="hidden" name="constructive" value="0" />
-            <input type="submit" value="Bad" />
-        </form>
-    </body>
-</html>
-
+        <div class="uk-panel uk-panel-box">
+            <div class="uk-panel-title" id="editsummary">{{ editsummary }}</div>
+            <div class="uk-table" id="diff1"><table style="margin-left:auto; margin-right:auto;">{{ diff|safe }}</table></div>
+            <table style="margin-left:auto; margin-right:auto;">
+                <tr>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="diffid" value="{{ diffid }}" />
+                            <input type="hidden" name="constructive" value="1" />
+                            <input class="uk-button" type="submit" value="Good" />
+                        </form>
+                    </td>
+                    <td>
+                        <a class="uk-button" href="/train/">Neutral</a>
+                    </td>
+                    <td>
+                        <form action="" method="post">
+                            <input type="hidden" name="diffid" value="{{ diffid }}" />
+                            <input type="hidden" name="constructive" value="0" />
+                            <input class="uk-button" type="submit" value="Bad" />
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+{% endblock %}
