@@ -1,8 +1,42 @@
 {% extends "navbar.html" %}
 {% block head %}
-<title>Doge - User Stats</title>
+<title>User Stats</title>
+<style type="text/css">
+    #container {
+        padding-top: 15px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    .panel-good {
+        border-style: solid;
+        border-color: #00a8e6;
+        border-width: thin;
+    }
+    .panel-bad {
+        border-style: solid;
+        border-color: #FFB870;
+        border-width: thin;
+    }
+    .badge-bad {
+        background-color: #FFB870;
+    }
+    .content {
+        padding: 5px 5px 5px 5px;
+    }
+</style>
 {% endblock %}
 {% block content %}
-very many edits
-so constructive
+<div id="container">
+<h1>User statistics</h1>
+{% for e in edits[::-1] %}
+    <div class="uk-panel panel-{% if e.score > 2 %}good{% else %}bad{% endif %}">
+        <div class="uk-panel-badge uk-badge {% if e.score <= 2 %}badge-bad{% endif %}">{{ e.score }}</div>
+        <div class="content">
+            <h3 class="uk-panel-title" style="float:left;">{{ e.page }}</h3>
+            <i style="float:right; padding-right:100px;">{{ e.summary }}</i>
+        </div>
+    </div>
+    <div style="padding-top:15px;padding-bottom:15px;" />
+{% endfor %}
+</div>
 {% endblock %}
