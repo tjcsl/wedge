@@ -16,7 +16,6 @@ def process_diff(diffiduser):
     cur = conn.cursor()
     cur.execute("SELECT wp_username FROM users")
     rusers = [r[0] for r in cur.fetchall()]
-    cur.close()
     if user not in rusers:
         return
     diff = get_diff_for_diffid(diffid)
@@ -25,6 +24,7 @@ def process_diff(diffiduser):
         zum += f(diff[0], diff[1])
     cur.execute("INSERT INTO edits (username, added, deled, score) VALUES (%s, %s, %s, %s)", (user, diff[0], diff[1], zum))
     conn.commit()
+    cur.close()
 
 
 def get_diff_for_diffid(diffid):
