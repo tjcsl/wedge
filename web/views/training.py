@@ -4,6 +4,7 @@ from urllib2 import urlopen
 import json
 from db import conn
 import re
+import lxml.html
 cur = conn.cursor()
 
 def train():
@@ -15,11 +16,26 @@ def train():
         rev = json.loads(rev)
         pages = rev["query"]["pages"]
         diff = pages.values()[0]["revisions"][0]["diff"]["*"]
-        addedlines = " ".join(re.findall(r'diff-addedline"><div>[.\n\r]*diffchange-inline">([.\n\r]*?)</span>', diff))
-        deledlines = " ".join(re.findall(r'diff-deletedline"><div>[.\n\r]*diffchange-inline">([.\n\r]*?)</span>', diff))
-        print addedlines
-        print deledlines
-        cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedlines, deledlines, constructive))
+        diff = lxml.html.document_fromstring(diff)
+        addedlines = diff.xpath("//td[@class='diff-addedline']")
+        deledlines = diff.xpath("//td[@class='diff-deletedline']")
+        addedstring = ""
+        deledstring = ""
+        for i in addedlines:
+            diffchanges = i.xpath("./span[@class='diffchange diffchange-inline']/text()")
+            if not diffchanges:
+                addedstring = addedstring + " " + i.text_content()
+            else:
+                addedstring = addedstring + " " + " ".join(diffchanges)
+        for i in deledlines:
+            diffchanges = i.xpath("./span[@class='diffchange diffchange-inline']/text()")
+            if not diffchanges:
+                deledstring = deledstring + " " + i.text_content()
+            else:
+                deledstring = deledstring + " " + " ".join(diffchanges)
+        print addedstring
+        print deledstring
+        cur.execute("INSERT INTO training_diffs (added, deled, is_good) VALUES (%s, %s, %s)", (addedstring, deledstring, constructive))
         conn.commit()
 
     revid = randint(57000000, 58500000)
