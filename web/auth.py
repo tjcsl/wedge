@@ -54,7 +54,7 @@ def create_account(username, password, email):
                   tag = "welcome")
     emsg.send()
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("INSERT INTO users (username, passwd_hash, email) VALUES (%s,%s, %s)",
+    cur.execute("INSERT INTO users (username, passwd_hash, email) VALUES (%s,%s,%s)",
                 (username, passwd_hash, email))
     conn.commit()
     cur.close()

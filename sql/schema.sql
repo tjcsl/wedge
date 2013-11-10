@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS users (
     username varchar(512),
     wp_username varchar(512),
     passwd_hash varchar(128),
+    email varchar(512),
     score float
 );
 
