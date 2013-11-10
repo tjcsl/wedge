@@ -20,7 +20,8 @@ def register():
     if request.method == "POST":
         if web.auth.create_account(
                 request.form["username"],
-                request.form["password"]
+                request.form["password"],
+                request.form["email"]
                 ):
             flash("Account created. Please login.", "success")
             return render_template("auth/login.html")

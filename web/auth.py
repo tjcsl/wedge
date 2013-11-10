@@ -20,7 +20,7 @@ def is_valid_login(username, password):
     return False
 
 
-def create_account(username, password):
+def create_account(username, password, email):
     """
     Create an account given a username/password combination.
     """
@@ -30,8 +30,8 @@ def create_account(username, password):
     if username in usernames or len(username) < 4:
         return False
     passwd_hash = hashlib.sha256(password).hexdigest()
-    cur.execute("INSERT INTO users (username, passwd_hash) VALUES (%s,%s)",
-                (username, passwd_hash))
+    cur.execute("INSERT INTO users (username, passwd_hash, email) VALUES (%s,%s, %s)",
+                (username, passwd_hash, email))
     conn.commit()
     cur.close()
     return True
