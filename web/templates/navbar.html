@@ -14,7 +14,7 @@
     <a href="/" class="uk-navbar-brand"><img src="/static/logo.png" style="height:21px;" /></a>
 	<a href="#sidebar" data-uk-offcanvas class="uk-navbar-toggle"></a>
 	<div class="uk-navbar-flip">
-		<ul class="uk-navbar-nav">
+		<ul class="uk-navbar-nav uk-navbar-attached">
 				{% if session.uid %}<li><a href="/logout">Log out</a></li>
 				{% else %}<li><a href="#loginmodal" data-uk-modal>Log in</a></li>
 				<li><a href="/register">Create account</a></li>

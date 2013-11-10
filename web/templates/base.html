@@ -15,7 +15,7 @@
 		{% endblock %}
 		<div id="alerts">
 			{% for category, message in get_flashed_messages(with_categories = True) %}
-			<div class="uk-alert uk-alert-{{ category }}">
+			<div class="uk-alert uk-alert-{{ category }}" style="padding-left: 20%; padding-right: 20%;">
 				<a href="" class="uk-alert-close uk-close"></a>
 				<p>{{ message | safe }}</p>
 			</div>
