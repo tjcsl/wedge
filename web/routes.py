@@ -25,5 +25,6 @@ add_views({
     '/userinfo/': userinfo.uinfo,
     '/userstats/': userstats.ustats,
     '/verify/': verify.verify,
-    '/achievements/': ach.ach
+    '/achievements/': ach.ach,
+    '/getusers.json': getusers.getusers
 })

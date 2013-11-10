@@ -11,6 +11,13 @@ def first_edit(wpusername):
     cur.close()
     return meetsreqs
 
+def onehundred_points(wpusername):
+    __display__ = "One Hundred Points"
+    cur.execute("SELECT sum(score) FROM edits WHERE username=%s", (wpusername,))
+    row = cur.fetchone()
+    cur.execute("WITH SELECT uid AS uid FROM users WHERE wp_username=%s\
+            SELECT 1 FROM achievements WHERE uid=uid AND name=%s", (wpusername, __display__))
+    return row[0] > 100 and cur.fetchone() is None
 
 def always(wpusername):
     __display__ = "Free Achievement"
@@ -18,7 +25,8 @@ def always(wpusername):
 
 
 ACH_FUNCS = {
-    first_edit: 'Your First Edit'
+    first_edit: 'Your First Edit',
+    onehundred_points: 'One Hundred Points'
 }
 
 def check_all_achievements(wpusername):

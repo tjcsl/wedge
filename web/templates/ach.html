@@ -14,12 +14,19 @@
 </style>
 {% endblock %}
 {% block content %}
-<h1>Achievements for {{ name }}</h1>
-{% for i in ach %}
 <div class="uk-panel">
-    <div class="uk-panel-badge"><span><i class="uk-icon-trophy"></i></span></div>
-    <h3 class="uk-panel-title">{{ i }} <a href="https://twitter.com/share?url=http%3A%2F%2Fwedge.csssuf.net%2Fachievements%2F%3Fusername%3D{{ name }}&text=I%20just%20got%20the%20achievement%20%22{{ i }}%22!"><i class="uk-icon-button uk-icon-twitter"></i></a></h3>
+    <div class="uk-panel-title">Achievements for {{ name }}</div>
+    <table class='uk-table'>
+    {% for i in ach %}
+    <tr>
+        <td class="uk-width-5-6">{{ i }}</td>
+        <td class="uk-width-1-6">
+            <a href="https://twitter.com/share?url=http%3A%2F%2Fwedge.csssuf.net%2Fachievements%2F%3Fusername%3D{{ name }}&text=I%20just%20got%20the%20achievement%20%22{{ i }}%22!">
+                <i class="uk-icon-button uk-icon-twitter"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+    </table>
 </div>
-<hr />
-{% endfor %}
 {% endblock %}
