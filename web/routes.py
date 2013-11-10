@@ -17,6 +17,7 @@ def add_views(views):
 
 add_views({
     '/': core.index,
+    '/favicon.ico': core.favicon,
     '/train/<int:revid>/': training.train,
     '/train/': training.train,
     '/login/': auth.login,
